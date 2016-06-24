@@ -1,0 +1,246 @@
+﻿@model SuperERP.Vendas.DTO.VendaContratoDTO
+
+@{
+    ViewBag.Title = "Venda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .row {
+        height: 45px !important;
+    }
+
+    .cabecalho {
+        padding-top: 13px;
+    }
+
+    .boxsizingBorder {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+</style>
+
+<link rel="stylesheet" href="~/Content/bootstrap-datepicker3.min.css">
+<div>
+    <h2 style="display: inline-block">Nova Venda</h2>
+    <h2 style="display: inline-block; float: right; position: relative; right: 0px;" class="col-sm-6 text-right">R$ 0,00</h2>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="container">
+            <div class="form-group col-sm-3">
+                <label class="col-sm-12 text-left">Cliente</label>
+                <div class="col-sm-12">
+                    <select class="form-control">
+                        <option value="">Selecione</option>
+                        <option value="1">Calçados S/A</option>
+                        <option value="2">Sport World</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-3">
+                <label class="col-sm-12 text-left">Data da Venda</label>
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.DataVenda, new { htmlAttributes = new { @class = "form-control data" } })
+                    @Html.ValidationMessageFor(model => model.DataVenda, "", new { @class = "text-danger", disabled = "true" })
+                </div>
+            </div>
+
+            <div class="form-group col-sm-3">
+                <label class="text-left col-sm-12">Status</label>
+                <div class="col-md-12">
+                    <select class="form-control" disabled>
+                        <option value="">Selecione</option>
+                        <option value="1">Em Orçamento</option>
+                        <option value="2">Orçamento Aceito</option>
+                        <option value="3">Orçamento Recusado</option>
+                        <option value="4">Venda</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group col-sm-3">
+                @Html.LabelFor(model => model.Contrato, htmlAttributes: new { @class = "control-label col-md-6" })
+                <div class="col-md-6">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.Contrato)
+                        @Html.ValidationMessageFor(model => model.Contrato, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="container">
+            <div class="row cabecalho">
+                <div class="col-sm-2">Produto/Serviço</div>
+                <div class="col-sm-4">Detalhes</div>
+                <div class="col-sm-2">Quantidade</div>
+                <div class="col-sm-2">Valor</div>
+                <div class="col-sm-2">Subtotal</div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <select class="form-control col-sm-2">
+                        <option value="">Selecione</option>
+                        <option value="1">Tênis</option>
+                        <option value="2">Meia</option>
+                    </select>
+                </div>
+                <div class="col-sm-4"><input type="text" class="form-control col-sm-4" /></div>
+                <div class="col-sm-2"><input type="text" class="form-control col-sm-2" /></div>
+                <div class="col-sm-2"><input type="text" class="form-control col-sm-2" /></div>
+                <div class="col-sm-2"><input type="text" class="form-control col-sm-2" /></div>
+            </div>
+            <div class="row">
+                <div class="col-sm-2">
+                    <select class="form-control col-sm-2">
+                        <option value="">Selecione</option>
+                        <option value="1">Tênis</option>
+                        <option value="2">Meia</option>
+                    </select>
+                </div>
+                <div class="col-sm-4"><input type="text" class="form-control col-sm-4" /></div>
+                <div class="col-sm-2"><input type="text" class="form-control col-sm-2" /></div>
+                <div class="col-sm-2"><input type="text" class="form-control col-sm-2" /></div>
+                <div class="col-sm-2"><input type="text" class="form-control col-sm-2" /></div>
+            </div>
+        </div>
+        <br />
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <button class="btn btn-default">
+                        <span class="glyphicon glyphicon-plus"></span>
+                        Adicionar mais uma linha
+                    </button>
+                </div>
+                <div class="col-sm-4">
+                    <h4 class="col-sm-6">Valor Total</h4>
+                    <h4 class="col-sm-offset-3 col-sm-3">R$ 0</h4>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-8 col-sm-4">
+                    <h4 class="col-sm-6">Desconto</h4>
+                    <h4 class="col-sm-6"><input type="text" placeholder="R$" class="col-sm-12 form-control" /></h4>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-offset-8 col-sm-4"><hr /></div>
+                <div class="col-sm-offset-8 col-sm-4">
+                    <h4 class="col-sm-6">Total Líquido</h4>
+                    <h4 class="col-sm-offset-3 col-sm-3">R$ 0</h4>
+                </div>
+            </div>
+        </div>
+        <br />
+        <hr />
+        <div class="container">
+            <div class="form-group col-sm-3">
+                <label class="text-left col-sm-12">Status</label>
+                <div class="col-md-12">
+                    <select class="form-control">
+                        <option value="1">À vista</option>
+                        <option value="2">1x</option>
+                        <option value="3">2x</option>
+                        <option value="4">3x</option>
+                        <option value="5">4x</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-sm-3">
+                <label class="col-sm-12 text-left">Vencimento</label>
+                <div class="col-md-12">
+                    <input class="form-control data" type="text" id="Vencimento" name="Vencimento" />
+                </div>
+            </div>
+
+            <div class="form-group col-sm-6">
+                <label class="text-left col-sm-12">Observações desta parcela</label>
+                <div class="col-md-12">
+                    <input class="form-control col-sm-12" type="text" />
+                </div>
+            </div>
+        </div>
+        <hr />
+        <br />
+        <div class="container">
+            <div class="form-group">
+                <label class="text-left col-sm-12">Forma de Pagamento</label>
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.FormaDePagamento, new { @class = "col-md-12 form-control" })
+                    @Html.ValidationMessageFor(model => model.FormaDePagamento, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="text-left col-sm-12">Observação</label>
+                <div class="col-md-12">
+                    @Html.TextAreaFor(model => model.Observacao, new { @class = "col-md-12 form-control" })
+                    @Html.ValidationMessageFor(model => model.Observacao, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="text-left col-sm-12">Vendedor</label>
+                <div class="col-md-12">
+                    <select class="form-control col-sm-2">
+                        <option value="">Selecione</option>
+                        <option value="1">Hilqueslei</option>
+                        <option value="2">Leonardo</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="col-sm-6">
+                <a href="/VendasOrcamentos" class="btn btn-default">Cancelar</a>
+            </div>
+            <div class="col-sm-offset-4 col-sm-2">
+                <input type="submit" value="Salvar" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $.fn.datepicker.dates["pt-BR"] = {
+            days: ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"],
+            daysShort: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"],
+            daysMin: ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
+            months: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+            monthsShort: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+            today: "Hoje",
+            clear: "Limpar"
+        }
+
+        var data = new Date();
+        var hoje = data.getDate() + "/" + (data.getMonth() + 1) + "/" + data.getFullYear();
+
+
+        $(".data").datepicker({
+            format: 'dd/mm/yyyy',
+            language: 'pt-BR',
+            startDate: hoje,
+            autoclose: true
+        });
+
+        $('.data').mask('00/00/0000');
+    });
+</script>

@@ -150,5 +150,14 @@ namespace SuperERP.Vendas
             var vendaAtivosDTO = Mapper.Map<ICollection<Venda_Ativos>, ICollection<VendaAtivosDTO>>(vendaAtivos);
             return vendaAtivosDTO;
         }
+
+        public static ICollection<VendaAtivosDTO> VendasOrcamentos()
+        {
+            Config.AutoMapperConfig.Inicializar();
+            var vendaAtivosRep = new VendaAtivosRepository();
+            var vendaAtivos = vendaAtivosRep.ObterLista();
+            var vendaAtivosDTO = Mapper.Map<ICollection<Venda_Ativos>, ICollection<VendaAtivosDTO>>(vendaAtivos);
+            return vendaAtivosDTO;
+        }
     }
 }

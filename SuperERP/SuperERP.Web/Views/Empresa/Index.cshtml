@@ -1,4 +1,4 @@
-﻿@model IEnumerable<SuperERP.Vendas.DTO.EmpresaDTO>
+﻿@model IEnumerable<SuperERP.Compras.DTO.EmpresaDTO>
 
 @{
     ViewBag.Title = "Index";
@@ -14,6 +14,30 @@
         <th>
             @Html.DisplayNameFor(model => model.Nome)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CNPJ)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RazaoSocial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CEP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Endereco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Complemento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bairro)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cidade)
+        </th>
         <th></th>
     </tr>
 
@@ -23,8 +47,32 @@
             @Html.DisplayFor(modelItem => item.Nome)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Alterar", new { empresaID = item.ID }) |    
-            @Html.ActionLink("Delete", "Excluir", new { empresaID = item.ID })
+            @Html.DisplayFor(modelItem => item.CNPJ)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RazaoSocial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CEP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Endereco)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Numero)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Complemento)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Bairro)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cidade)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Alterar", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Excluir", new { id=item.ID })
         </td>
     </tr>
 }

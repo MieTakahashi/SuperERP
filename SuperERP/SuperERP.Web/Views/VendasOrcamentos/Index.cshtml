@@ -1,0 +1,98 @@
+﻿
+@{
+    ViewBag.Title = "Vendas e Orçamentos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Vendas e Orçamentos</h2>
+
+<div class="container text-right">
+    <a class="btn btn-primary">Nova Venda</a>
+    <a class="btn btn-default">Novo Orçamento</a>
+</div>
+<br />
+<div class="container">    
+    <div class="row text-center">
+        <div class="col-sm-1"></div>
+        <div class="text-center col-sm-2 btn-danger">
+            <h4>Recusados <span class="badge">0</span></h4>
+            <p class="lead">R$@ViewBag.Recusados</p>
+        </div>
+        <div class="text-center col-sm-2 btn-info" id="btnReceber">
+            <h4>Orçamentos <span class="badge">1</span> </h4>
+            <p class="lead">R$@ViewBag.Orcamentos </p>
+        </div>
+        <div class="text-center col-sm-2 btn-success" id="btnRecebidas">
+            <h4>Aceitos <span class="badge">0</span></h4>
+            <p class="lead">R$@ViewBag.Aceitos</p>
+        </div>
+        <div class="text-center col-sm-2 btn-success" id="btnRecebidas">
+            <h4>Vendas <span class="badge">2</span></h4>
+            <p class="lead">R$@ViewBag.Vendas</p>
+        </div>
+        <div class="text-center col-sm-2 btn-primary" id="btnTotal">
+            <h4>Total <span class="badge">3</span></h4>
+            <p class="lead">R$@ViewBag.Previsao</p>
+        </div>
+    </div>
+</div>
+<br />
+<div class="container">
+    <div class="row cabecalho">
+        <div class="col-sm-2">Data da venda</div>
+        <div class="col-sm-1">Venda</div>
+        <div class="col-sm-1">Cliente</div>
+        <div class="col-sm-2">Status da negociação</div>
+        <div class="col-sm-2">Nota Fiscal</div>
+        <div class="col-sm-2">Valor</div>
+        <div class="col-sm-2">Ações</div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">19/05/2016</div>
+        <div class="col-sm-1">1</div>
+        <div class="col-sm-1">4</div>
+        <div class="col-sm-2"><span class="badge">Nota fiscal emitida</span></div>
+        <div class="col-sm-2">1956</div>
+        <div class="col-sm-2">R$ 2.409,22</div>
+        <div class="col-sm-2">
+            <a href="VendasOrcamentos/ExcluirVenda/8">
+                <span class="btn btn-danger">Excluir</span>
+            </a>
+            <a href="VendasOrcamentos/ExcluirVenda/id">
+                <span class="btn btn-info">Editar</span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">23/05/2016</div>
+        <div class="col-sm-1">1</div>
+        <div class="col-sm-1">4</div>
+        <div class="col-sm-2"><span class="badge">Aguardando aprovação</span></div>
+        <div class="col-sm-2"><a>Emitir</a></div>
+        <div class="col-sm-2">R$ 567,90</div>
+        <div class="col-sm-2">
+            <a href="VendasOrcamentos/ExcluirVenda/id">
+                <span class="btn btn-danger">Excluir</span>
+            </a>
+            <a href="VendasOrcamentos/ExcluirVenda/id">
+                <span class="btn btn-info">Editar</span>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2">23/05/2016</div>
+        <div class="col-sm-1">1</div>
+        <div class="col-sm-1">4</div>
+        <div class="col-sm-2"><span class="badge">Contrato 1 de 6</span></div>
+        <div class="col-sm-2"><a>Emitir</a></div>
+        <div class="col-sm-2">R$ 632,90</div>
+        <div class="col-sm-2">
+            <a href="VendasOrcamentos/ExcluirVenda/id">
+                <span class="btn btn-danger">Excluir</span>
+            </a>
+            <a href="VendasOrcamentos/ExcluirVenda/id">
+                <span class="btn btn-info">Editar</span>
+            </a>
+        </div>
+    </div>
+</div>

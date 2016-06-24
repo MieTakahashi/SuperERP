@@ -1,48 +1,48 @@
 ﻿@model IEnumerable<SuperERP.Vendas.DTO.OrdemServicoDTO>
 
 @{
-    ViewBag.Title = "Listar Todas as Ordens de Servico";
+    ViewBag.Title = "Ordem de Servico";
 }
 
-<h2>Listar Todas as Ordens de Servico</h2>
+<h2>Todas as Ordens de Servico</h2>
 
 <p>
-    @Html.ActionLink("Nova Ordem de Servico", "CadastrarNovaOrdem")
+    <a href="/OrdemServico/CadastrarNovaOrdem" title="Cadastrar" class="btn btn-success">
+        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+        Cadastrar
+    </a>
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.numeroOrdem)
+            @Html.DisplayNameFor(model => model.Nome)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dataInicio)
+            @Html.DisplayNameFor(model => model.Numero_Os)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.dataEntrega)
+            @Html.DisplayNameFor(model => model.DataI_Inicio)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.equipamentoRecebido)
+            @Html.DisplayNameFor(model => model.DataI_Entrega)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.numeroSerie)
+            @Html.DisplayNameFor(model => model.Equipamento_Recebido)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.marca)
+            @Html.DisplayNameFor(model => model.NumeroSerie)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.modelo)
+            @Html.DisplayNameFor(model => model.Marca)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.observacaoRecebimentoEquipamento)
+            @Html.DisplayNameFor(model => model.Modelo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descricaoProblemaDefeito)
+            @Html.DisplayNameFor(model => model.Status)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.descricaoServicoPrestado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.observacaoIneternas)
+            @Html.DisplayNameFor(model => model.Servico)
         </th>
         <th></th>
     </tr>
@@ -50,41 +50,42 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.numeroOrdem)
+            @Html.DisplayFor(modelItem => item.Nome)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.dataInicio)
+            @Html.DisplayFor(modelItem => item.Numero_Os)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.dataEntrega)
+            @Html.DisplayFor(modelItem => item.DataI_Inicio)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.equipamentoRecebido)
+            @Html.DisplayFor(modelItem => item.DataI_Entrega)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.numeroSerie)
+            @Html.DisplayFor(modelItem => item.Equipamento_Recebido)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.marca)
+            @Html.DisplayFor(modelItem => item.NumeroSerie)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.modelo)
+            @Html.DisplayFor(modelItem => item.Marca)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.observacaoRecebimentoEquipamento)
+            @Html.DisplayFor(modelItem => item.Modelo)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.descricaoProblemaDefeito)
+            @Html.DisplayFor(modelItem => item.Status)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.descricaoServicoPrestado)
+            @Html.DisplayFor(modelItem => item.Servico)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.observacaoIneternas)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "EditarOrdemServico", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Detalhes", "DetalheOrdem", new { /* id=item.PrimaryKey */ })
+            
+            <a href="/OrdemServico/EditarOrdemServico/@item.ID" title="Editar" class="btn btn-info">
+            <span class="glyphicon glyphicon-pencil"></span> </a>
+            <a href="/OrdemServico/DetalheOrdem/@item.ID" title="Detalhes" class="btn btn-info">
+                <span class="glyphicon glyphicon-align-justify"></span>
+            </a>
         </td>
     </tr>
 }

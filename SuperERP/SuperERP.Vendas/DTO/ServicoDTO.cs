@@ -8,6 +8,7 @@ namespace SuperERP.Vendas.DTO
 {
     public class ServicoDTO
     {
+        public int ID { get; set; }
         public int ID_Empresa { get; set; }
         public int ID_Categoria_Servico { get; set; }
         public string Nome { get; set; }  

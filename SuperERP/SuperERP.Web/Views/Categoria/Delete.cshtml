@@ -1,0 +1,40 @@
+﻿@model SuperERP.Vendas.DTO.CategoriaDTO
+
+@{
+    ViewBag.Title = "Deletar categoria";
+}
+
+<h2>Deletar categoria</h2>
+
+<h3>Você tem certeza de que deseja deletar essa categoria?</h3>
+<div>
+    <h4>Categoria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CategoriaTipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CategoriaTipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Deletar" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

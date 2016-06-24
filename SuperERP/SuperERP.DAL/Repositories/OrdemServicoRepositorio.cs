@@ -27,14 +27,39 @@ namespace SuperERP.DAL.Repositories
 
         public void salvarOrdemServico(Ordem_Servico ordem)
         {
-            try
+            if (ordem.ID > 0)
             {
-                dbContext.Ordem_Servico.Add(ordem);
-            }
-            catch (Exception)
-            {
+                // update
+                var ordemS = dbContext.Ordem_Servico.Find(ordem.ID);
 
-                throw;
+                ordemS.Nome = ordem.Nome;
+                ordemS.ID_Servico = ordem.ID_Servico;
+                ordemS.ID_Status = ordem.ID_Status;
+                ordemS.Numero_Os = ordem.Numero_Os;
+                ordemS.DataI_Inicio = ordem.DataI_Inicio;
+                ordemS.DataI_Entrega = ordem.DataI_Entrega;
+                ordemS.Equipamento_Recebido = ordem.Equipamento_Recebido;
+                ordemS.NumeroSerie = ordem.NumeroSerie;
+                ordemS.Marca = ordem.Marca;
+                ordemS.Modelo = ordem.Modelo;
+                ordemS.Obs_Recebimento = ordem.Obs_Recebimento;
+                ordemS.Obs_Problema = ordem.Obs_Problema;
+                ordemS.Descr_Servico = ordem.Descr_Servico;
+                ordemS.Obs_Interno = ordem.Obs_Interno;
+
+
+            }
+            else {
+
+                try
+                {
+                    dbContext.Ordem_Servico.Add(ordem);
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
             }
 
             dbContext.SaveChanges();

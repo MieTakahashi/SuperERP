@@ -22,6 +22,9 @@ namespace SuperERP.Vendas.Config
             AutoMapper.Mapper.CreateMap<CompraAtivosEstoqueDTO, Compra_Ativos>();
             AutoMapper.Mapper.CreateMap<CategoriaDTO, Categoria>();
             AutoMapper.Mapper.CreateMap<EmpresaDTO, Empresa>();
+            AutoMapper.Mapper.CreateMap<OrdemServicoDTO, Ordem_Servico>().ForSourceMember(x => x.Servico, y => y.Ignore());
+            AutoMapper.Mapper.CreateMap<ServicoDTO, Servico>();
+            AutoMapper.Mapper.CreateMap<StatusServicoDTO, Status_Servico>();
         }
 
 
@@ -36,9 +39,14 @@ namespace SuperERP.Vendas.Config
             AutoMapper.Mapper.CreateMap<Venda, VendaDTO>();
             AutoMapper.Mapper.CreateMap<Venda_Ativos, VendaAtivosDTO>();
             AutoMapper.Mapper.CreateMap<Venda_Ativos, VendaAtivosEstoqueDTO>();
-            AutoMapper.Mapper.CreateMap<Venda_Ativos, CompraAtivosEstoqueDTO>();
+            AutoMapper.Mapper.CreateMap<Compra_Ativos, CompraAtivosEstoqueDTO>();
             AutoMapper.Mapper.CreateMap<Categoria, CategoriaDTO>();
             AutoMapper.Mapper.CreateMap<Empresa, EmpresaDTO>();
+            AutoMapper.Mapper.CreateMap<Ordem_Servico, OrdemServicoDTO>()
+                .ForMember(x => x.Status, y => y.MapFrom(o => o.Status_Servico.Nome))
+                .ForMember(x=> x.Servico, y=> y.MapFrom(o=> o.Servico.Nome));
+            AutoMapper.Mapper.CreateMap<Servico, ServicoDTO>();
+            AutoMapper.Mapper.CreateMap<Status_Servico, StatusServicoDTO>();
         }
     }
 }

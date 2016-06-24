@@ -1,121 +1,231 @@
-﻿@model SuperERP.Vendas.DTO.PessoaFisicaDTO
+﻿@model Tuple<SuperERP.Vendas.DTO.PessoaFisicaDTO, SuperERP.Vendas.DTO.PessoaJuridicaDTO>
 
 @{
-    ViewBag.Title = "Cadastrar";
+    ViewBag.Title = "Cadastrar Cliente";
 }
 
-<h2>Cadastrar</h2>
+<style type="text/css">.field-validation-error{color:red;}</style>
 
+<h2>Cadastrar Cliente</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>PessoaFisicaDTO</h4>
-        <hr />
+    <div class="well form-horizontal" id="form">
         @Html.ValidationSummary(true)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Nome, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Nome)
-                @Html.ValidationMessageFor(model => model.Nome)
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label class="control-label col-md-10">
+                    <span class="pull-left">Nome</span>
+                    @Html.TextBoxFor(model => model.Item1.Nome, new { style="width:100%;" })
+                    @Html.ValidationMessageFor(model => model.Item1.Nome)
+                </label>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="control-label col-md-8">
+                    <span class="pull-left">Tipo pessoa</span>
+                    <select class="form-control input-sm col-md-4" id="pessoa" name="pessoa">
+                        <option value="1">Física</option>
+                        <option value="2">Jurídica</option>
+                    </select>
+                </label>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CPF, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CPF)
-                @Html.ValidationMessageFor(model => model.CPF)
+        <div class="row" id="jurFis" >
+            <div class="form-group col-md-4">
+                <label class="control-label col-md-8">
+                    <span class="pull-left">CPF</span><br />
+                    @Html.TextBoxFor(model => model.Item1.CPF, new { style = "width:100%;" })
+                    @Html.ValidationMessageFor(model => model.Item1.CPF)
+                </label>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="control-label col-md-8">
+                    <span class="pull-left">RG</span>
+                    @Html.TextBoxFor(model => model.Item1.RG, new { style = "width:100%;" })
+                    @Html.ValidationMessageFor(model => model.Item1.RG)
+                </label>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.RG, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.RG)
-                @Html.ValidationMessageFor(model => model.RG)
+        <div class="row">
+            <div class="form-group col-md-12">
+                <a id="expandCont"><label class="pull-left col-md-4">
+                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" id="seta1"> Contato</span>
+                </label></a>
             </div>
         </div>
+        <div id="contato" style="display: none;">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="control-label col-md-2">
+                        <span>Email</span>
+                        @Html.EditorFor(model => model.Item1.Email)
+                        @Html.ValidationMessageFor(model => model.Item1.Email)
+                    </label>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email)
-                @Html.ValidationMessageFor(model => model.Email)
+                <div class="form-group col-md-4">
+                    <label class="control-label col-md-2">
+                        <span>Telefone</span>
+                        @Html.EditorFor(model => model.Item1.Fone)
+                        @Html.ValidationMessageFor(model => model.Item1.Fone)
+                    </label>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="control-label col-md-2">
+                        <span>Cargo</span>
+                        @Html.EditorFor(model => model.Item1.Cargo)
+                        @Html.ValidationMessageFor(model => model.Item1.Cargo)
+                    </label>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Fone, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Fone)
-                @Html.ValidationMessageFor(model => model.Fone)
+        <div class="row">
+            <div class="form-group col-md-12">
+                <a id="expandEnd"><label class="pull-left col-md-4">
+                    <span class="glyphicon glyphicon-chevron-down" aria-hidden="true" id="seta2"> Endereço</span>
+                </label></a>
             </div>
         </div>
+        <div id="endereco" style="display: none;">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="control-label col-md-10">
+                        <span class="pull-left">Endereço</span>
+                        @Html.TextBoxFor(model => model.Item1.Endereco, new { style = "width:100%;" })
+                        @Html.ValidationMessageFor(model => model.Item1.Endereco)
+                    </label>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cargo, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Cargo)
-                @Html.ValidationMessageFor(model => model.Cargo)
+                <div class="form-group col-md-2">
+                    <label class="control-label col-md-8">
+                        <span class="pull-left">Número</span>
+                        @Html.TextBoxFor(model => model.Item1.Numero, new { style = "width:100%;" })
+                        @Html.ValidationMessageFor(model => model.Item1.Numero)
+                    </label>
+                </div>
+
+                <div class="form-group col-md-2">
+                    <label class="control-label col-md-10">
+                        <span class="pull-left">Complemento</span>
+                        @Html.TextBoxFor(model => model.Item1.Complemento, new { style = "width:100%;" })
+                        @Html.ValidationMessageFor(model => model.Item1.Complemento)
+                    </label>
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="control-label col-md-10">
+                        <span class="pull-left">CEP</span>
+                        @Html.TextBoxFor(model => model.Item1.CEP, new { style = "width:100%;" })
+                        @Html.ValidationMessageFor(model => model.Item1.CEP)
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label class="control-label col-md-2">
+                        <span>Bairro</span>
+                        @Html.EditorFor(model => model.Item1.Bairro)
+                        @Html.ValidationMessageFor(model => model.Item1.Bairro)
+                    </label>
+                </div>
+
+                <div class="form-group col-md-4">
+                    <label class="control-label col-md-6">
+                        <span>Cidade (Cidade/UF)</span>
+                        @Html.EditorFor(model => model.Item1.Cidade)
+                        @Html.ValidationMessageFor(model => model.Item1.Cidade)
+                    </label>
+                </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Endereco, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Endereco)
-                @Html.ValidationMessageFor(model => model.Endereco)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Numero, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Numero)
-                @Html.ValidationMessageFor(model => model.Numero)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Complemento, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Complemento)
-                @Html.ValidationMessageFor(model => model.Complemento)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Bairro, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Bairro)
-                @Html.ValidationMessageFor(model => model.Bairro)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Cidade, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Cidade)
-                @Html.ValidationMessageFor(model => model.Cidade)
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="row">
+            <div class="form-group col-md-12">
+                <div class="col-md-4">
+                    <input type="submit" value="Cadastrar" class="btn btn-success" />
+                </div>
             </div>
         </div>
     </div>
 }
 
+<div class="hidden" id="fis">
+    <div class="form-group col-md-4">
+        <label class="control-label col-md-8">
+            <span class="pull-left">CPF</span><br />
+            @Html.TextBoxFor(model => model.Item1.CPF, new { style = "width:100%;" })
+            @Html.ValidationMessageFor(model => model.Item1.CPF)
+        </label>
+    </div>
+    <div class="form-group col-md-4">
+        <label class="control-label col-md-8">
+            <span class="pull-left">RG</span>
+            @Html.TextBoxFor(model => model.Item1.RG, new { style = "width:100%;" })
+            @Html.ValidationMessageFor(model => model.Item1.RG)
+        </label>
+    </div>
+</div>
+
+<div class="hidden" id="jur">
+    <div class="form-group col-md-4">
+        <label class="control-label col-md-8">
+            <span class="pull-left">CNPJ</span><br />
+            @Html.TextBoxFor(model => model.Item2.CNPJ, new { style = "width:100%;" })
+            @Html.ValidationMessageFor(model => model.Item2.CNPJ)
+        </label>
+    </div>
+    <div class="form-group col-md-6">
+        <label class="control-label col-md-6">
+            <span class="pull-left">Razão Social</span>
+            @Html.TextBoxFor(model => model.Item2.RazaoSocial, new { style = "width:100%;" })
+            @Html.ValidationMessageFor(model => model.Item2.RazaoSocial)
+        </label>
+    </div>
+</div>
+
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Voltar", "Index")
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#Item1_Fone').mask('(00) 0000-00009');
+        $('#Item1_Fone').change(function (event) {
+            if ($(this).val().length == 15) {
+                $('#Item1_Fone').mask('(00) 00000-0009');
+            } else {
+                $('#Item1_Fone').mask('(00) 0000-00009');
+            }
+        });
+        $('#Item1_CPF').mask('000.000.000-00', { reverse: true });
+        $('#Item2_CNPJ').mask('00.000.000/0000-00', { reverse: true });
+        $('#Item1_RG').mask('99.999.999-9');
+        $('#Item1_CEP').mask('00000-000');
+        $('#expandCont').click(function () {
+            $('#contato').slideToggle();
+            $('#seta1').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+        });
+        $('#expandEnd').click(function () {
+            $('#endereco').slideToggle();
+            $('#seta2').toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
+        });
+        $('#pessoa').change(function () {
+            if ($(this).val() == 1) {
+                $('#jurFis').empty();
+                $('#jurFis').append($('#fis').html());
+                $('#Item2_Nome').attr('name', 'Item1.Nome');
+                $('#Item2_Nome').attr('id', 'Item1_Nome');
+            } else if ($(this).val() == 2) {
+                $('#jurFis').empty();
+                $('#jurFis').append($('#jur').html());
+                $('#Item1_Nome').attr('name', 'Item2.Nome');
+                $('#Item1_Nome').attr('id', 'Item2_Nome');
+            }
+        });
+    });
+</script>

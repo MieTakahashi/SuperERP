@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -39,13 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\ContasBancoDTO.cs" />
+    <Compile Include="DTO\DadosBancariosDTO.cs" />
     <Compile Include="DTO\ContasPagarDTO.cs" />
     <Compile Include="DTO\ContasReceberDTO.cs" />
     <Compile Include="DTO\ExtratoDTO.cs" />
     <Compile Include="DTO\MovimentacaoDTO.cs" />
     <Compile Include="DTO\PlanoCategoriaDTO.cs" />
+    <Compile Include="DTO\ViewCompraDTO.cs" />
+    <Compile Include="DTO\ViewVendaDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AutoMapperConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SuperERP.DAL\SuperERP.DAL.csproj">
@@ -54,7 +61,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Service\" />
+    <Folder Include="Config\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

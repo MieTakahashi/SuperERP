@@ -3,12 +3,13 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - SuperERP</title>
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/datatable")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/mask")
     @RenderSection("scripts", required: false)
     <script type="text/javascript">
         $(document).ready(function () {
@@ -26,15 +27,26 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("SuperERP", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendas</a>
+                        <ul class="dropdown-menu">
+                            <li><a>Clientes</a></li>
+                            <li><a href="/VendasOrcamentos">Vendas e Orçamentos</a></li>
+                            <li><a href="/OrdemServico/ListarTodasOrdens">Ordem de serviço</a></li> 
+                            <li><a>Parcelas a receber</a></li> 
+                            <li><a>Estoque</a></li> 
+                            <li><a>Nota fiscal de produto</a></li> 
+                            <li><a>Serviços</a></li> 
+                        </ul>
+                    </li>
                     <li>@Html.ActionLink("Empresa", "Empresa", "Cadastro")</li>
                     <li>@Html.ActionLink("Usuario", "Usuario", "Cadastro")</li>
                     <li>@Html.ActionLink("Clientes", "Index", "Cliente")</li>
+                    <li>@Html.ActionLink("Ordem de Servico", "ListarTodasOrdens", "OrdemServico")</li>
                 </ul>
             </div>
         </div>
@@ -43,7 +55,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - SuperERP</p>
         </footer>
     </div>
 </body>

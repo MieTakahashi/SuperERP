@@ -22,6 +22,13 @@ namespace SuperERP.Web.Controllers
 
         public ActionResult CadastrarNovaOrdem() // chamar tela de cadastro ok
         {
+            var ordemApp = new OrdemServicoService();
+            var listServico = ordemApp.listarServicos();
+            ViewBag.servicos = new SelectList(listServico, "ID", "Nome");
+
+            var listStatus = ordemApp.listarStatus();
+            ViewBag.Status = new SelectList(listStatus, "ID", "Nome");
+
             return View(); // view criada
         }
 
@@ -39,6 +46,13 @@ namespace SuperERP.Web.Controllers
 
         public ActionResult EditarOrdemServico(int id)  // receber id do obj selecionado, buscar e mostrar na tela
         {
+            var ordemApp = new OrdemServicoService();
+            var listServico = ordemApp.listarServicos();
+            ViewBag.servicos = new SelectList(listServico, "ID", "Nome");
+
+            var listStatus = ordemApp.listarStatus();
+            ViewBag.Status = new SelectList(listStatus, "ID", "Nome");
+
             var buscarOrdem = new OrdemServicoService().buscarOrdemServico(id);
             return View(buscarOrdem);  // view criada
         }
@@ -52,7 +66,7 @@ namespace SuperERP.Web.Controllers
                 atualizarOrdem.savarOrdemServico(ordemDTO);
             }
 
-            return RedirectToAction("detalheOrdem"); // jogar para a tela de detalhes depois de gravar a edicao
+            return RedirectToAction("detalheOrdem", new {ordemDTO.ID }); // jogar para a tela de detalhes depois de gravar a edicao
         }
 
 	}

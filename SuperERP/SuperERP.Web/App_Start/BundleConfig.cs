@@ -11,6 +11,8 @@ namespace SuperERP.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-2.2.3.js",
                         "~/Scripts/jquery.dataTables.min.js"));
+            bundles.Add(new ScriptBundle("~/bundles/mask").Include(
+                        "~/Scripts/jquery.mask.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

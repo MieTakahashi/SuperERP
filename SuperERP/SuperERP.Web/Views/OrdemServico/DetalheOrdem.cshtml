@@ -1,106 +1,134 @@
 ﻿@model SuperERP.Vendas.DTO.OrdemServicoDTO
 
 @{
-    ViewBag.Title = "DetalheOrdem";
+    ViewBag.Title = "Ordem Servico";
 }
 
-<h2>DetalheOrdem</h2>
+<h2>Detalhes</h2>
 
 <div>
-    <h4>OrdemServicoDTO</h4>
+    <h4>Ordem de Servico</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.numeroOrdem)
+            @Html.DisplayNameFor(model => model.Nome)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.numeroOrdem)
+            @Html.DisplayFor(model => model.Nome)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.dataInicio)
+            @Html.DisplayNameFor(model => model.Numero_Os)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.dataInicio)
+            @Html.DisplayFor(model => model.Numero_Os)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.dataEntrega)
+            @Html.DisplayNameFor(model => model.DataI_Inicio)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.dataEntrega)
+            @Html.DisplayFor(model => model.DataI_Inicio)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.equipamentoRecebido)
+            @Html.DisplayNameFor(model => model.DataI_Entrega)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.equipamentoRecebido)
+            @Html.DisplayFor(model => model.DataI_Entrega)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.numeroSerie)
+            @Html.DisplayNameFor(model => model.Equipamento_Recebido)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.numeroSerie)
+            @Html.DisplayFor(model => model.Equipamento_Recebido)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.marca)
+            @Html.DisplayNameFor(model => model.NumeroSerie)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.marca)
+            @Html.DisplayFor(model => model.NumeroSerie)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.modelo)
+            @Html.DisplayNameFor(model => model.Marca)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.modelo)
+            @Html.DisplayFor(model => model.Marca)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.observacaoRecebimentoEquipamento)
+            @Html.DisplayNameFor(model => model.Modelo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.observacaoRecebimentoEquipamento)
+            @Html.DisplayFor(model => model.Modelo)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.descricaoProblemaDefeito)
+            @Html.DisplayNameFor(model => model.Obs_Recebimento)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.descricaoProblemaDefeito)
+            @Html.DisplayFor(model => model.Obs_Recebimento)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.descricaoServicoPrestado)
+            @Html.DisplayNameFor(model => model.Obs_Problema)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.descricaoServicoPrestado)
+            @Html.DisplayFor(model => model.Obs_Problema)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.observacaoIneternas)
+            @Html.DisplayNameFor(model => model.Descr_Servico)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.observacaoIneternas)
+            @Html.DisplayFor(model => model.Descr_Servico)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Obs_Interno)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Obs_Interno)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Servico)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Servico)
         </dd>
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
+    <a href="/OrdemServico/EditarOrdemServico/@Model.ID" title="Editar" class="btn btn-info">
+        <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+        <a href="/OrdemServico/ListarTodasOrdens" title="Editar" class="btn btn-info">
+            <span class="glyphicon glyphicon-arrow-left"></span>
+        </a>
 </p>

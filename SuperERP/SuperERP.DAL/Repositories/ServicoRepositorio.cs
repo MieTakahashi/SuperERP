@@ -16,5 +16,9 @@ namespace SuperERP.DAL.Repositories
             return dbContext.Empresas.ToList();
         }
 
+        public ICollection<Servico> pegarServicos() {
+            return dbContext.Servicoes.ToList();
+        }
+
     }
 }

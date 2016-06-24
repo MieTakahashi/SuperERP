@@ -1,11 +1,12 @@
 ﻿@{
     ViewBag.Title = "Clientes";
+    int i = 0;
 }
 
 <h2>Clientes</h2>
 <div class="well">
     <p>
-        <a href="/cliente/cadastro" class="btn btn-success">Cadastrar</a>
+        <a href="/Cliente/Cadastrar" class="btn btn-success">Cadastrar</a>
     </p>
     <table class="table table-hover" id="myTable">
         <thead>
@@ -22,44 +23,75 @@
                 <th>
                     Telefone
                 </th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             @foreach (var item in ViewBag.fisicas)
             {
 
-                <tr class="clickable-row" onclick="document.location = '@Url.Action("Editar", "Cliente", new { id = item.ID, tipo = 1 })';">
-                    <td>
+                <tr class="clickable-row">
+                    <td id="nome@(i)" onclick="document.location = '@Url.Action("Editar", "Cliente", new { id = item.ID, tipo = 1 })';">
                         @Html.Raw(item.Nome)
                     </td>
-                    <td>
+                    <td id="cpf@(i)" onclick="document.location = '@Url.Action("Editar", "Cliente", new { id = item.ID, tipo = 1 })';">
                         @Html.Raw(item.CPF)
                     </td>
-                    <td>
+                    <td onclick="document.location = '@Url.Action("Editar", "Cliente", new { id = item.ID, tipo = 1 })';">
                         @Html.Raw(item.Email)
                     </td>
-                    <td>
+                    <td id="fone@(i)" onclick="document.location = '@Url.Action("Editar", "Cliente", new { id = item.ID, tipo = 1 })';">
                         @Html.Raw(item.Fone)
                     </td>
+                    <td><strong><a id="excluir@(item.ID)" name="@(i)" href="/Cliente/Excluir/@(item.ID)?tipo=1"><span style="color:red;" class="btn btn-default btn-sm glyphicon glyphicon-remove"></span></a></strong></td>
                 </tr>
+                i++;
             }
             @foreach (var item in ViewBag.juridicas)
             {
-                <tr class="clickable-row" onclick="document.location = '@Url.Action("Editar", "Cliente", new { id = item.ID, tipo = 2 })';">
-                    <td>
+                <tr class="clickable-row">
+                    <td id="nome@(i)" name="@(item.ID)" onclick="document.location = '@Url.Action("Editar", "Cliente", new { id = item.ID, tipo = 2 })';">
                         @Html.Raw(item.Nome)
                     </td>
-                    <td>
+                    <td id="cnpj@(i)" onclick="document.location = '@Url.Action("Editar", "Cliente", new { id = item.ID, tipo = 2 })';">
                         @Html.Raw(item.CNPJ)
                     </td>
-                    <td>
+                    <td onclick="document.location = '@Url.Action("Editar", "Cliente", new { id = item.ID, tipo = 2 })';">
                         @Html.Raw(item.Email)
                     </td>
-                    <td>
+                    <td id="fone@(i)" onclick="document.location = '@Url.Action("Editar", "Cliente", new { id = item.ID, tipo = 2 })';">
                         @Html.Raw(item.Fone)
                     </td>
+                    <td><strong><a id="excluir@(item.ID)" name="@(i)" href="/Cliente/Excluir/@(item.ID)?tipo=2"><span style="color:red;" class="btn btn-default btn-sm glyphicon glyphicon-remove"></span></a></strong></td>
                 </tr>
+                i++;
             }
         </tbody>
     </table>
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('[id^="fone"]').each(function (event) {
+            if ($(this).html().replace(/ /g, '').length == 13) {
+                $(this).mask('(00) 00000-0000');
+            } else if ($(this).html().replace(/ /g, '').length == 12) {
+                $(this).mask('(00) 0000-0000');
+            } else {
+                $(this).mask('');
+            }
+        });
+        $('[id^="cpf"]').mask('000.000.000-00', { reverse: true });
+        $('[id^="cnpj"]').mask('00.000.000/0000-00', { reverse: true });
+        $('[id^="excluir"]').click(function (e) {
+            e.preventDefault();
+            var link = $(this).attr('href');
+            var ID = $(this).attr('id');
+            var nome = $('#nome' + $(this).attr('name')).html();
+            nome = nome.replace(/\s*$/, '');
+            nome = nome.replace(/^\s*/, '');
+            if (confirm('Tem certeza de que deseja excluir ' + nome + '?')) {
+                window.location = link;
+            }
+        });
+    });
+</script>

@@ -26,7 +26,7 @@ namespace SuperERP.Web.Controllers
         public ActionResult Incluir(UsuarioDTO usuario)
         {
             Compras.Service.UsuarioService.Cadastrar(usuario);
-            return View();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Alterar(int usuarioID)
